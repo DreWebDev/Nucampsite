@@ -1,4 +1,4 @@
-const validateUserLoginForm = (values) => {
+export const validateUserLoginForm = (values) => {
   const errors = {};
 
   if (!values.username) {
@@ -17,5 +17,3 @@ const validateUserLoginForm = (values) => {
 
   return errors;
 };
-
-export default validateUserLoginForm;

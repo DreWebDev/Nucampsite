@@ -9,9 +9,10 @@ import {
   Label,
   Button,
 } from "reactstrap";
+
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import validateUserLoginForm from "../../utils/validateUserLoginForm";
 import defaultAvatar from "../../app/assets/img/unicorn.png";
+import { validateUserLoginForm } from "../../utils/validateUserLoginForm";
 
 const UserLoginForm = () => {
   const [loginModalOpen, setLoginModalOpen] = useState(false);
@@ -59,40 +60,46 @@ const UserLoginForm = () => {
             onSubmit={handleLogin}
             validate={validateUserLoginForm}
           >
-            <Form>
-              <FormGroup>
-                <Label htmlFor="username">Username</Label>
-                <Field
-                  id="username"
-                  name="username"
-                  placeholder="Username"
-                  className="form-control"
-                />
-                <ErrorMessage
-                  name="username"
-                  component="div"
-                  className="field-error"
-                />
-              </FormGroup>
-              <FormGroup>
-                <Label htmlFor="password">Password</Label>
-                <Field
-                  type="password"
-                  id="password"
-                  name="password"
-                  placeholder="Password"
-                  className="form-control"
-                />
-                <ErrorMessage
-                  name="password"
-                  component="div"
-                  className="field-error"
-                />
-              </FormGroup>
-              <Button type="submit" color="primary">
-                Login
-              </Button>
-            </Form>
+            {({ isValid, dirty }) => (
+              <Form>
+                <FormGroup>
+                  <Label htmlFor="username">Username</Label>
+                  <Field
+                    id="username"
+                    name="username"
+                    placeholder="Username"
+                    className="form-control"
+                  />
+                  <ErrorMessage
+                    name="username"
+                    component="div"
+                    className="field-error"
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Label htmlFor="password">Password</Label>
+                  <Field
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Password"
+                    className="form-control"
+                  />
+                  <ErrorMessage
+                    name="password"
+                    component="div"
+                    className="field-error"
+                  />
+                </FormGroup>
+                <Button
+                  type="submit"
+                  color="primary"
+                  disabled={!(isValid && dirty)}
+                >
+                  Login
+                </Button>
+              </Form>
+            )}
           </Formik>
         </ModalBody>
       </Modal>

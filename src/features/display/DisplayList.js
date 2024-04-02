@@ -4,6 +4,8 @@ import { selectFeaturedCampsite } from "../campsites/campsitesSlice";
 import { selectFeaturedPromotion } from "../promotions/promotionsSlice";
 import { selectFeaturedPartner } from "../partners/partnersSlice";
 import { useSelector } from "react-redux";
+import Loading from "../../components/Loading";
+import Error from "../../components/Error";
 
 const DisplayList = () => {
   const items = useSelector((state) => [
@@ -17,9 +19,11 @@ const DisplayList = () => {
     <Row>
       {items.map((item, idx) => {
         return (
-          <Col md className="m-1" key={idx}>
-            <AnimatedDisplayCard item={item} />
-          </Col>
+          item && (
+            <Col md className="m-1" key={idx}>
+              <AnimatedDisplayCard item={item} />
+            </Col>
+          )
         );
       })}
     </Row>

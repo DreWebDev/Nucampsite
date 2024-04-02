@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { fetchCampsites } from "../Nucampsite/src/features/campsites/campsitesSlice";
+import { fetchCampsites } from "./features/campsites/campsitesSlice";
 import { Routes, Route } from "react-router-dom";
 import ContactPage from "./pages/ContactPage";
 import HomePage from "./pages/HomePage";
